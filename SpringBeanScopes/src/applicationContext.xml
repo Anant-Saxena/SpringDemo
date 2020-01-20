@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+    <!-- Define your beans here -->
+    <context:property-placeholder location="classpath:mapValues.properties"/>
+    <!-- define the dependency -->
+     <bean id="myFortuneService"
+    		class="com.springDemo.HappyFortuneService">
+    	</bean>
+
+ 	<bean id="myCoach"
+ 		class="com.springDemo.BaseBallCoach">	 	
+ 		<constructor-arg ref="myFortuneService"></constructor-arg>	
+ 	</bean>
+ 	
+ 	<bean id="myCricketCoach" class="com.springDemo.CricketCoach">
+ 	<property name="fortuneService" ref="myFortuneService"></property>
+ 	<property name="teamNames">
+ 	<list>
+ 	<value>abc</value>
+ 	<value>def</value>
+ 	</list>
+ 	</property>
+ 	<property name="map">
+		<map>
+			<entry key="Key 1" value="${value1}" />
+			<entry key="Key 3" value="${value2}"/>
+		</map>
+	</property>
+ 	</bean>
+
+    <!--
+    <bean id="myCoach"
+        class="com.springDemo.BaseBallCoach">         
+    </bean>
+    -->
+
+</beans>
+
+
+
+
+
